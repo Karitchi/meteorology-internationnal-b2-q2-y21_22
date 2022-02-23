@@ -7,7 +7,7 @@ app.use('/', (req, res) => {
     res.send('hello')
 })
 
-app.get('/info', function (req, res) {
+app.get('/info', (req, res)=> {
     res.send(req.query);
 });
 
