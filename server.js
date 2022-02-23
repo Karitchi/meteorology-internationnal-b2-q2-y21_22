@@ -9,7 +9,7 @@ connectDb()
 
 app.use(express.json())
 
-app.post('/', (req, res) => {
+app.post('/add', (req, res) => {
     delete req.body._id;
     const Data = new data({
         ...req.body
