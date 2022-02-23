@@ -1,6 +1,9 @@
 const express = require('express')
 const connectDb = require('./connectDb')
+const bodyParser = require('body-parser')
 const data = require('./models/Data')
+const Data = require('./models/Data')
+const { send } = require('express/lib/response')
 const app = express()
 const port = process.env.PORT || 3000
 // 3P1nHCg68z6FPYDx
@@ -8,6 +11,23 @@ const port = process.env.PORT || 3000
 connectDb()
 
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/index.html`);
+})
+
+
+app.get('/findAll', (req, res) => {
+    Data.find({}, (err, arrayOfResults) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(arrayOfResults)
+        }
+    })
+    res.redirect('/')
+})
 
 app.post('/add', (req, res) => {
     delete req.body._id;
