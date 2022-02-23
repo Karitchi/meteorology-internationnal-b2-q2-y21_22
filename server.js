@@ -25,8 +25,9 @@ app.get('/findAll', (req, res) => {
         } else {
             console.log(arrayOfResults)
         }
+        res.status(201).json(arrayOfResults)
     })
-    res.redirect('/')
+    // res.redirect('/')
 })
 
 app.post('/add', (req, res) => {
